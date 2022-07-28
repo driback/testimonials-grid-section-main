@@ -1,0 +1,7 @@
+@use "../util/" as u;
+
+.main {
+  @include u.breakpoint(desktop) {
+    padding: 6rem 10rem;
+  }
+}

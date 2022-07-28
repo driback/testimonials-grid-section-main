@@ -1,0 +1,93 @@
+@use "../util" as u;
+
+.container {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.main {
+  // border: 1px solid red;
+  // padding: 4.5rem 1.5rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 4rem 1.5rem;
+
+  &__section {
+    position: relative;
+    // border: 1px solid red;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    z-index: 1;
+
+    @each $name, $color in u.$colors {
+      &:#{$name} {
+        background-color: $color;
+      }
+    }
+
+    &:nth-child(2n + 3) {
+      color: u.$very-dark-blackish-blue;
+    }
+    &:nth-child(even),
+    &:nth-child(1) {
+      color: u.$white;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+      z-index: -1;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  &__user {
+    display: flex;
+    gap: 1rem;
+    height: max-content;
+  }
+
+  &__profilep {
+    height: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 2rem;
+  }
+
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    span:last-child {
+      opacity: 0.5;
+    }
+  }
+
+  &__article,
+  &__testimoni {
+    margin-top: 1rem;
+  }
+
+  // &__title {
+  //   font-weight: 700;
+  // }
+
+  &__testimoni {
+    opacity: 0.7;
+  }
+}
